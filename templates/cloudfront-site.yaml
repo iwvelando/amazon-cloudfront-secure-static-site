@@ -24,6 +24,9 @@ Parameters:
   S3BucketRootName:
     Description: Content Bucket
     Type: String
+  S3BucketWebsiteURL:
+    Description: Content Bucket
+    Type: String
   S3BucketRootArn:
     Description: Content Bucket locator
     Type: String
@@ -47,8 +50,12 @@ Resources:
               - s3:GetObject
             Effect: Allow
             Resource: !Sub '${S3BucketRootArn}/*'
-            Principal:
-              CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
+            Principal: '*'
+          - Action:
+              - s3:ListBucket
+            Effect: Allow
+            Resource: !Sub '${S3BucketRootArn}'
+            Principal: '*'
 
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -143,7 +150,7 @@ Resources:
               Override: true
               Preload: true
             ContentSecurityPolicy: 
-              ContentSecurityPolicy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+              ContentSecurityPolicy: "default-src 'none'; img-src 'self' www.household3d.com household3d.com; script-src 'self' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; object-src 'none'; font-src 'self' fonts.gstatic.com unpkg.com"
               Override: true
             ContentTypeOptions: 
               Override: true

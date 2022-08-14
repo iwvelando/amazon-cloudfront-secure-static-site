@@ -36,6 +36,8 @@ Resources:
       Tags:
         - Key: Solution
           Value: ACFS3
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
 
   CopyLayerVersion:
     Type: "AWS::Serverless::LayerVersion"
@@ -99,6 +101,9 @@ Outputs:
   S3BucketRootArn:
     Description: Website bucket locator
     Value: !GetAtt S3BucketRoot.Arn
+  S3BucketWebsiteURL:
+    Description: Website bucket URL
+    Value: !Select [1, !Split ["http://", !GetAtt S3BucketRoot.WebsiteURL]]
   S3BucketLogs:
     Description: Logging bucket
     Value: !Ref S3BucketLogs
