@@ -86,10 +86,6 @@ Resources:
         HttpVersion: 'http2'
         DefaultRootObject: 'index.html'
         IPV6Enabled: true
-        Logging:
-          Bucket: !Ref 'S3BucketLogsName'
-          IncludeCookies: false
-          Prefix: 'cdn/'
         Origins:
           - DomainName: !Ref 'S3BucketRootName'
             Id: !Sub 'S3-${AWS::StackName}-root'
