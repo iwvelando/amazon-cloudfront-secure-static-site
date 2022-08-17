@@ -65,6 +65,8 @@ Resources:
           - !Sub '${SubDomain}.${DomainName}'
           - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
         DefaultCacheBehavior:
+          AllowedMethods: ['GET', 'HEAD']
+          CachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6'
           Compress: true
           DefaultTTL: 86400
           ForwardedValues:
@@ -87,11 +89,11 @@ Resources:
         DefaultRootObject: 'index.html'
         IPV6Enabled: true
         Origins:
-          - DomainName: !Ref 'S3BucketRootName'
+          - DomainName: !Ref 'S3BucketWebsiteURL'
             Id: !Sub 'S3-${AWS::StackName}-root'
-            S3OriginConfig:
-              OriginAccessIdentity:
-                !Join ['', ['origin-access-identity/cloudfront/', !Ref CloudFrontOriginAccessIdentity]]
+            CustomOriginConfig:
+              HTTPPort: 80
+              OriginProtocolPolicy: 'http-only'
         PriceClass: 'PriceClass_All'
         ViewerCertificate:
           AcmCertificateArn: !Ref 'CertificateArn'
