@@ -12,7 +12,6 @@
 packaged.template
 packaged.zip
 s-headers.zip
-witch.zip
 
 # dependencies
 **/node_modules
@@ -40,4 +39,3 @@ witch.zip
 **/.nyc_output
 
 /www
-/source/witch/nodejs

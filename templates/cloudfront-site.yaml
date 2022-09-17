@@ -148,7 +148,7 @@ Resources:
               Override: true
               Preload: true
             ContentSecurityPolicy: 
-              ContentSecurityPolicy: "default-src 'none'; img-src 'self' www.household3d.com household3d.com; script-src 'self' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; object-src 'none'; font-src 'self' fonts.gstatic.com unpkg.com; frame-src youtube.com www.youtube.com"
+              ContentSecurityPolicy: "default-src disquscdn.com *.disquscdn.com disqus.com *.disqus.com; img-src 'self' www.household3d.com household3d.com disqus.com *.disqus.com disquscdn.com *.disquscdn.com; script-src 'self' household3d-com.disqus.com 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com disquscdn.com *.disquscdn.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com disquscdn.com *.disquscdn.com; object-src 'none'; font-src 'self' fonts.gstatic.com unpkg.com; frame-src youtube.com www.youtube.com disqus.com *.disqus.com"
               Override: true
             ContentTypeOptions: 
               Override: true
